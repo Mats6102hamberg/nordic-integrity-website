@@ -880,6 +880,57 @@
             background: var(--navy);
         }
 
+        .install-timeline {
+            max-width: 800px;
+            margin: 4rem auto;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .timeline-step {
+            flex: 1;
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-step:hover {
+            transform: translateY(-5px);
+            border-color: rgba(184, 151, 106, 0.3);
+        }
+
+        .timeline-step-number {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-gold);
+            color: var(--deep-navy);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 1rem;
+        }
+
+        .timeline-step-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-step-duration {
+            font-size: 0.9rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
         .install-cards {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -1358,6 +1409,10 @@
                 grid-template-columns: 1fr;
             }
 
+            .install-timeline {
+                flex-direction: column;
+            }
+
             .trust-metrics {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -1721,6 +1776,24 @@
             <p class="section-description" style="margin-top: 1rem;" data-lang-sv="ERS installeras lokalt och är avsett att skydda dokument och analysflöden – inte att ersätta befintlig IT-drift eller verksamhetslogik." data-lang-en="ERS is installed locally and is designed to protect documents and analysis flows – not to replace existing IT operations or business logic.">
                 ERS installeras lokalt och är avsett att skydda dokument och analysflöden – inte att ersätta befintlig IT-drift eller verksamhetslogik.
             </p>
+        </div>
+
+        <div class="install-timeline">
+            <div class="timeline-step animate-on-scroll">
+                <div class="timeline-step-number">1</div>
+                <div class="timeline-step-title" data-lang-sv="Förberedelse & policy" data-lang-en="Preparation & policy">Förberedelse & policy</div>
+                <div class="timeline-step-duration" data-lang-sv="1–2 dagar" data-lang-en="1–2 days">1–2 dagar</div>
+            </div>
+            <div class="timeline-step animate-on-scroll">
+                <div class="timeline-step-number">2</div>
+                <div class="timeline-step-title" data-lang-sv="Installation lokalt" data-lang-en="Local installation">Installation lokalt</div>
+                <div class="timeline-step-duration" data-lang-sv="0.5–1 dag" data-lang-en="0.5–1 day">0.5–1 dag</div>
+            </div>
+            <div class="timeline-step animate-on-scroll">
+                <div class="timeline-step-number">3</div>
+                <div class="timeline-step-title" data-lang-sv="Verifiering & Trust Score" data-lang-en="Verification & Trust Score">Verifiering & Trust Score</div>
+                <div class="timeline-step-duration" data-lang-sv="1 dag" data-lang-en="1 day">1 dag</div>
+            </div>
         </div>
 
         <div class="install-cards">
