@@ -349,6 +349,12 @@
 
         .trust-score {
             display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .trust-score-numbers {
+            display: flex;
             align-items: baseline;
             gap: 0.5rem;
         }
@@ -363,6 +369,18 @@
         .trust-score-max {
             font-size: 1.5rem;
             color: var(--silver);
+        }
+
+        .trust-score-explanation {
+            font-size: 0.85rem;
+            color: var(--ice);
+            margin-top: 0.75rem;
+            line-height: 1.5;
+            max-width: 300px;
+        }
+
+        .trust-score-explanation strong {
+            color: var(--gold);
         }
 
         .trust-status {
@@ -1390,8 +1408,13 @@
             <div class="trust-badge-preview">
                 <div class="trust-badge-header">
                     <div class="trust-score">
-                        <span class="trust-score-number">94</span>
-                        <span class="trust-score-max">/100</span>
+                        <div class="trust-score-numbers">
+                            <span class="trust-score-number">94</span>
+                            <span class="trust-score-max">/100</span>
+                        </div>
+                        <div class="trust-score-explanation">
+                            <span data-lang-sv="<strong>Grön drift</strong> • Inga dataflöden utanför zon • Senaste kontroll 14:35" data-lang-en="<strong>Green status</strong> • No data flows outside zone • Last check 14:35"><strong>Grön drift</strong> • Inga dataflöden utanför zon • Senaste kontroll 14:35</span>
+                        </div>
                     </div>
                     <div class="trust-status">
                         <span class="status-dot"></span>
