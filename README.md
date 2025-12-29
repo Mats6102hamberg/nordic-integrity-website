@@ -1,10 +1,10 @@
-# Nordic Integrity System AB 
+# Nordic Security Systems AB
 
 Officiell hemsida för **Enterprise Research Shield** (ERS)
 
 ## Projektbeskrivning
 
-ERS (Enterprise Research Shield) är ett enterprise-säkerhetssystem för känsliga dokument, utvecklat av Nordic Integrity Systems AB. Systemet möjliggör säker analys och avkodning av känslig information utan att data lämnar kundens kontrollerade miljö.
+ERS (Enterprise Research Shield) är ett enterprise-säkerhetssystem för känsliga dokument, utvecklat av Nordic Security Systems AB. Systemet möjliggör säker analys och avkodning av känslig information utan att data lämnar kundens kontrollerade miljö.
 
 ### Nyckelfunktioner
 
@@ -17,8 +17,8 @@ ERS (Enterprise Research Shield) är ett enterprise-säkerhetssystem för känsl
 
 ## Företagsinformation
 
-**Nordic Integrity Systems AB**
-_"Insikter utan insyn."_
+**Nordic Security Systems AB**
+_"Säkerhet utan insyn."_
 
 ERS är specifikt utformat för sjukvård, myndigheter och organisationer där sekretess är lagstadgad. Passar utmärkt för medelstora, stora och globala företag.
 
@@ -92,4 +92,4 @@ Grundare och ansvarig VD
 
 ---
 
-© 2025 Nordic Integrity Systems AB. Alla rättigheter förbehållna.
+© 2025 Nordic Security Systems AB. Alla rättigheter förbehållna.
