@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERS – Enterprise Research Shield | Nordic Integrity Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --deep-navy: #0a1628;
+            --navy: #1a2744;
+            --slate: #2d3a4f;
+            --steel: #4a5568;
+            --silver: #94a3b8;
+            --ice: #e2e8f0;
+            --white: #ffffff;
+            --gold: #b8976a;
+            --gold-light: #cdb08a;
+            --teal: #0d9488;
+            --teal-light: #14b8a6;
+            --success: #22c55e;
+            --warning: #eab308;
+            --danger: #ef4444;
+            --gradient-hero: linear-gradient(135deg, #0a1628 0%, #1a2744 50%, #0d3a3a 100%);
+            --gradient-gold: linear-gradient(135deg, #b8976a 0%, #cdb08a 100%);
+            --gradient-card: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.02) 100%);
+            --shadow-xl: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            --shadow-glow: 0 0 60px rgba(184, 151, 106, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--deep-navy);
+            color: var(--ice);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+
+        /* Animated background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .bg-pattern::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(ellipse at 30% 20%, rgba(13, 148, 136, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 80%, rgba(184, 151, 106, 0.06) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-2%, 2%) rotate(1deg); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.5rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 22, 40, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-gold);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--deep-navy);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .logo-text span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--silver);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--gradient-gold);
+            color: var(--deep-navy);
+            padding: 0.75rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(184, 151, 106, 0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(184, 151, 106, 0.4);
+        }
+
+        .lang-switcher {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-right: 1rem;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--silver);
+            padding: 0.4rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn:hover {
+            border-color: rgba(255, 255, 255, 0.4);
+            color: var(--white);
+        }
+
+        .lang-btn.active {
+            background: var(--gradient-gold);
+            border-color: transparent;
+            color: var(--deep-navy);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem 4rem 6rem;
+            position: relative;
+            background: var(--gradient-hero);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(184, 151, 106, 0.1);
+            border: 1px solid rgba(184, 151, 106, 0.3);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--gold);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .hero-badge::before {
+            content: '🛡️';
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 7vw, 5rem);
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.1s backwards;
+        }
+
+        .hero h1 span {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-style: italic;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--silver);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            animation: fadeInUp 0.8s ease 0.3s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
+        }
+
+        .btn-primary {
+            background: var(--gradient-gold);
+            color: var(--deep-navy);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(184, 151, 106, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(184, 151, 106, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .hero-visual {
+            margin-top: 4rem;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.5s backwards;
+        }
+
+        .trust-badge-preview {
+            background: var(--gradient-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .trust-badge-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .trust-score {
+            display: flex;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .trust-score-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .trust-score-max {
+            font-size: 1.5rem;
+            color: var(--silver);
+        }
+
+        .trust-status {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .trust-metrics {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+        }
+
+        .metric {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 1rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-label {
+            font-size: 0.75rem;
+            color: var(--silver);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .metric-value.success { color: var(--success); }
+        .metric-value.warning { color: var(--warning); }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 8rem 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--silver);
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(180deg, var(--deep-navy) 0%, var(--navy) 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--gradient-card);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-gold);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(184, 151, 106, 0.3);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(184, 151, 106, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: var(--silver);
+            font-size: 1rem;
+        }
+
+        .feature-highlight {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(13, 148, 136, 0.1);
+            border-left: 3px solid var(--teal);
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+            color: var(--teal-light);
+            font-style: italic;
+        }
+
+        /* Trust Score Section */
+        .trust-section {
+            background: var(--navy);
+        }
+
+        .trust-pillars {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto 4rem;
+        }
+
+        .pillar {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pillar:hover {
+            transform: translateY(-5px);
+            border-color: rgba(184, 151, 106, 0.3);
+        }
+
+        .pillar-icon {
+            width: 56px;
+            height: 56px;
+            background: rgba(184, 151, 106, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 1.25rem;
+        }
+
+        .pillar h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+
+        .pillar p {
+            font-size: 0.9rem;
+            color: var(--silver);
+        }
+
+        /* Self-healing Demo */
+        .demo-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(254, 249, 231, 0.05) 0%, rgba(254, 249, 231, 0.02) 100%);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            position: relative;
+        }
+
+        .demo-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .demo-title {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .demo-time {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--warning);
+            font-size: 0.9rem;
+        }
+
+        .demo-level {
+            background: rgba(234, 179, 8, 0.2);
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+        }
+
+        .demo-message {
+            font-size: 1.25rem;
+            font-style: italic;
+            color: var(--ice);
+            margin-bottom: 2rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--warning);
+        }
+
+        .demo-details {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .demo-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .demo-label {
+            font-weight: 600;
+            color: var(--gold);
+            min-width: 120px;
+        }
+
+        .demo-value {
+            color: var(--silver);
+        }
+
+        .demo-signature {
+            text-align: right;
+            margin-top: 2rem;
+            font-style: italic;
+            color: var(--steel);
+        }
+
+        /* Data Ownership */
+        .ownership-section {
+            background: linear-gradient(180deg, var(--navy) 0%, var(--deep-navy) 100%);
+        }
+
+        .ownership-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .ownership-content h3 {
+            font-size: 2.5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+        }
+
+        .ownership-content h3 span {
+            color: var(--gold);
+        }
+
+        .ownership-list {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .ownership-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding: 1.25rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border-left: 3px solid var(--gold);
+        }
+
+        .ownership-list .icon {
+            font-size: 1.5rem;
+        }
+
+        .ownership-list strong {
+            display: block;
+            color: var(--white);
+            margin-bottom: 0.25rem;
+        }
+
+        .ownership-visual {
+            position: relative;
+        }
+
+        .data-flow {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2rem;
+        }
+
+        .flow-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+        }
+
+        .flow-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(13, 148, 136, 0.2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .flow-arrow {
+            text-align: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+        }
+
+        .flow-blocked {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .flow-blocked .flow-icon {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        /* Language Logs */
+        .logs-section {
+            background: var(--deep-navy);
+        }
+
+        .logs-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .log-panel {
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .log-panel.technical {
+            background: #1e1e1e;
+            border: 1px solid #333;
+        }
+
+        .log-panel.natural {
+            background: linear-gradient(135deg, rgba(13, 148, 136, 0.1) 0%, rgba(13, 148, 136, 0.05) 100%);
+            border: 1px solid rgba(13, 148, 136, 0.3);
+        }
+
+        .log-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-weight: 600;
+        }
+
+        .technical .log-header {
+            color: #888;
+        }
+
+        .natural .log-header {
+            color: var(--teal-light);
+        }
+
+        .log-content {
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            line-height: 1.8;
+        }
+
+        .technical .log-content {
+            color: #d4d4d4;
+        }
+
+        .natural .log-content {
+            font-family: 'DM Sans', sans-serif;
+            color: var(--ice);
+            font-size: 1rem;
+        }
+
+        .log-line {
+            margin-bottom: 0.5rem;
+        }
+
+        .log-line .error { color: #f87171; }
+        .log-line .warning { color: #fbbf24; }
+        .log-line .info { color: #60a5fa; }
+
+        /* Installation */
+        .install-section {
+            background: var(--navy);
+        }
+
+        .install-cards {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .install-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .install-card h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .install-card p {
+            color: var(--silver);
+            margin-bottom: 1.5rem;
+        }
+
+        .install-list {
+            list-style: none;
+        }
+
+        .install-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--ice);
+        }
+
+        .install-list li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .principle-quote {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background: rgba(184, 151, 106, 0.1);
+            border-radius: 12px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        /* Virus Protection */
+        .virus-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .virus-card {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .virus-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(13, 148, 136, 0.4);
+        }
+
+        .virus-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(13, 148, 136, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 1.25rem;
+        }
+
+        .virus-card h4 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--white);
+            margin-bottom: 0.75rem;
+        }
+
+        .virus-card p {
+            font-size: 0.9rem;
+            color: var(--silver);
+        }
+
+        /* Procurement */
+        .procurement-section {
+            background: linear-gradient(180deg, var(--deep-navy) 0%, var(--navy) 100%);
+        }
+
+        .procurement-badges {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            max-width: 1000px;
+            margin: 0 auto 4rem;
+        }
+
+        .procurement-badge {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1.25rem 2rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .procurement-badge:hover {
+            border-color: rgba(184, 151, 106, 0.4);
+            transform: translateY(-3px);
+        }
+
+        .procurement-badge .icon {
+            font-size: 1.75rem;
+        }
+
+        .procurement-badge .text {
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        /* Summary Table */
+        .summary-table {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .summary-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .summary-row.header {
+            background: var(--gradient-gold);
+        }
+
+        .summary-row.header .cell {
+            color: var(--deep-navy);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .summary-row:not(.header) {
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .summary-row:not(.header):hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .cell {
+            padding: 1.25rem 2rem;
+        }
+
+        .cell.challenge {
+            color: var(--silver);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .cell.solution {
+            color: var(--teal-light);
+            font-weight: 500;
+        }
+
+        /* Contact */
+        .contact-section {
+            background: var(--gradient-hero);
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-title {
+            color: var(--gold);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--ice);
+        }
+
+        .contact-item .icon {
+            font-size: 1.25rem;
+        }
+
+        .contact-item a {
+            color: var(--ice);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--gold);
+        }
+
+        .company-logo {
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .company-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .company-tagline {
+            font-style: italic;
+            color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-navy);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 2rem 4rem;
+            text-align: center;
+            color: var(--steel);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .features-grid,
+            .trust-pillars,
+            .virus-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 4rem;
+            }
+
+            .features-grid,
+            .trust-pillars,
+            .virus-features,
+            .logs-comparison,
+            .install-cards,
+            .ownership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-metrics {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .procurement-badges {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">
+            <div class="logo-icon">ERS</div>
+            <div class="logo-text">Nordic <span>Integrity</span></div>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#features" data-lang-sv="Funktioner" data-lang-en="Features">Funktioner</a></li>
+            <li><a href="#trust-score" data-lang-sv="Trust Score" data-lang-en="Trust Score">Trust Score</a></li>
+            <li><a href="#security" data-lang-sv="Säkerhet" data-lang-en="Security">Säkerhet</a></li>
+            <li><a href="#installation" data-lang-sv="Installation" data-lang-en="Installation">Installation</a></li>
+            <li><a href="#contact" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta" data-lang-sv="Boka demo" data-lang-en="Book demo">Boka demo</a>
+        <div class="lang-switcher">
+            <button class="lang-btn active" onclick="setLanguage('sv')">SV</button>
+            <button class="lang-btn" onclick="setLanguage('en')">EN</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge" data-lang-sv="Enterprise-säkerhet för känsliga dokument" data-lang-en="Enterprise security for sensitive documents">Enterprise-säkerhet för känsliga dokument</div>
+            <h1>Enterprise <span>Research Shield</span></h1>
+            <p class="hero-tagline" data-lang-sv="&quot;Insikter utan insyn.&quot;" data-lang-en="&quot;Insights without exposure.&quot;">"Insikter utan insyn."</p>
+            <p class="hero-description" data-lang-sv="ERS ger er kraften att avkoda och analysera era känsligaste dokument – utan att en enda byte data lämnar er kontroll." data-lang-en="ERS gives you the power to decode and analyze your most sensitive documents – without a single byte of data leaving your control.">
+                ERS ger er kraften att avkoda och analysera era känsligaste dokument –
+                utan att en enda byte data lämnar er kontroll.
+            </p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-primary" data-lang-sv="Kontakta oss" data-lang-en="Contact us">Kontakta oss</a>
+                <a href="#features" class="btn-secondary" data-lang-sv="Läs mer" data-lang-en="Learn more">Läs mer</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="trust-badge-preview">
+                <div class="trust-badge-header">
+                    <div class="trust-score">
+                        <span class="trust-score-number">94</span>
+                        <span class="trust-score-max">/100</span>
+                    </div>
+                    <div class="trust-status">
+                        <span class="status-dot"></span>
+                        <span data-lang-sv="Systemet fungerar normalt" data-lang-en="System operating normally">Systemet fungerar normalt</span>
+                    </div>
+                </div>
+                <div class="trust-metrics">
+                    <div class="metric">
+                        <div class="metric-label">Data Containment</div>
+                        <div class="metric-value success">100%</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label" data-lang-sv="Behörighet" data-lang-en="Authorization">Behörighet</div>
+                        <div class="metric-value success" data-lang-sv="Godkänd" data-lang-en="Approved">Godkänd</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label" data-lang-sv="Systemhälsa" data-lang-en="System Health">Systemhälsa</div>
+                        <div class="metric-value success" data-lang-sv="Optimal" data-lang-en="Optimal">Optimal</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-label" data-lang-sv="Senaste kontroll" data-lang-en="Last check">Senaste kontroll</div>
+                        <div class="metric-value">14:35</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="features">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label" data-lang-sv="Nyckelfunktioner" data-lang-en="Key Features">Nyckelfunktioner</span>
+            <h2 class="section-title" data-lang-sv="Byggt för enterprise-säkerhet" data-lang-en="Built for enterprise security">Byggt för enterprise-säkerhet</h2>
+            <p class="section-description" data-lang-sv="ERS är ett skyddsverktyg – inte bara ett analysverktyg. Specifikt utformat för sjukvård, myndigheter och organisationer där sekretess är lagstadgad. Passar utmärkt för medelstora, stora och globala företag." data-lang-en="ERS is a protection tool – not just an analysis tool. Specifically designed for healthcare, government agencies and organizations where confidentiality is legally mandated. Perfect for medium, large and global enterprises.">
+                ERS är ett skyddsverktyg – inte bara ett analysverktyg. Specifikt utformat för
+                sjukvård, myndigheter och organisationer där sekretess är lagstadgad.
+                Passar utmärkt för medelstora, stora och globala företag.
+            </p>
+            <p class="section-description" style="margin-top: 1rem;" data-lang-sv="ERS ersätter inte befintliga verksamhetssystem eller säkerhetslösningar – det fungerar som ett fristående skyddslager runt känslig information." data-lang-en="ERS does not replace existing business systems or security solutions – it functions as a standalone protective layer around sensitive information.">
+                ERS ersätter inte befintliga verksamhetssystem eller säkerhetslösningar – det fungerar som ett fristående skyddslager runt känslig information.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">🔐</div>
+                <h3>ERS Memory Vault</h3>
+                <p data-lang-sv="Systemets analyskomponenter utvecklar sin förståelse via dedikerade minnesvalv. All inlärning sker lokalt och isolerat." data-lang-en="The system's analysis components develop their understanding through dedicated memory vaults. All learning occurs locally and in isolation.">Systemets analyskomponenter utvecklar sin förståelse via dedikerade minnesvalv. All inlärning sker lokalt och isolerat.</p>
+                <div class="feature-highlight" data-lang-sv="&quot;Er data gör ERS smartare för er, men aldrig för någon annan.&quot;" data-lang-en="&quot;Your data makes ERS smarter for you, but never for anyone else.&quot;">"Er data gör ERS smartare för er, men aldrig för någon annan."</div>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">📊</div>
+                <h3>Koda Trust Score</h3>
+                <p data-lang-sv="Kontinuerlig hälsokontroll, inte en engångsstämpel. Mäter systemets integritet i realtid med konkret bevis på säkerhetsnivån." data-lang-en="Continuous health check, not a one-time stamp. Measures system integrity in real-time with concrete proof of security level.">Kontinuerlig hälsokontroll, inte en engångsstämpel. Mäter systemets integritet i realtid med konkret bevis på säkerhetsnivån.</p>
+                <div class="feature-highlight" data-lang-sv="Score 0–100 med konfiguerbara policy-trösklar" data-lang-en="Score 0–100 with configurable policy thresholds">Score 0–100 med konfiguerbara policy-trösklar</div>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">🔍</div>
+                <h3 data-lang-sv="Avkodning utan exponering" data-lang-en="Decoding without exposure">Avkodning utan exponering</h3>
+                <p data-lang-sv="Konkurrerande lösningar skickar text till externa molntjänster. ERS arbetar lokalt – ni får insikterna, men behåller hemligheterna." data-lang-en="Competing solutions send text to external cloud services. ERS works locally – you get the insights, but keep the secrets.">Konkurrerande lösningar skickar text till externa molntjänster. ERS arbetar lokalt – ni får insikterna, men behåller hemligheterna.</p>
+                <div class="feature-highlight" data-lang-sv="All bearbetning sker i er kontrollerade miljö" data-lang-en="All processing occurs in your controlled environment">All bearbetning sker i er kontrollerade miljö</div>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">🔧</div>
+                <h3 data-lang-sv="Självläkande system" data-lang-en="Self-healing system">Självläkande system</h3>
+                <p data-lang-sv="ERS övervakar kontinuerligt systemets hälsa och kan automatiskt åtgärda vanliga driftproblem utan manuell intervention." data-lang-en="ERS continuously monitors system health and can automatically resolve common operational issues without manual intervention.">ERS övervakar kontinuerligt systemets hälsa och kan automatiskt åtgärda vanliga driftproblem utan manuell intervention.</p>
+                <div class="feature-highlight" data-lang-sv="Färre supportärenden, snabbare återställning" data-lang-en="Fewer support tickets, faster recovery">Färre supportärenden, snabbare återställning</div>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">🌐</div>
+                <h3 data-lang-sv="Loggar på ert språk" data-lang-en="Logs in your language">Loggar på ert språk</h3>
+                <p data-lang-sv="Traditionella system visar obegripliga tekniska format. ERS översätter allt till naturligt språk på svenska, engelska eller tyska." data-lang-en="Traditional systems display incomprehensible technical formats. ERS translates everything to natural language in Swedish, English or German.">Traditionella system visar obegripliga tekniska format. ERS översätter allt till naturligt språk på svenska, engelska eller tyska.</p>
+                <div class="feature-highlight" data-lang-sv="Gör säkerhetsinformation begriplig – även utanför IT." data-lang-en="Makes security information understandable – even outside IT.">Gör säkerhetsinformation begriplig – även utanför IT.</div>
+            </div>
+
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon">🛡️</div>
+                <h3 data-lang-sv="Integration med befintligt virusskydd" data-lang-en="Integration with existing antivirus">Integration med befintligt virusskydd</h3>
+                <p data-lang-sv="ERS samarbetar sömlöst med era befintliga antiviruslösningar. Tidig upptäckt, samordnad respons, och reservåtgärd vid behov." data-lang-en="ERS collaborates seamlessly with your existing antivirus solutions. Early detection, coordinated response, and backup action when needed.">ERS samarbetar sömlöst med era befintliga antiviruslösningar. Tidig upptäckt, samordnad respons, och reservåtgärd vid behov.</p>
+                <div class="feature-highlight" data-lang-sv="Förstärker ert befintliga skydd" data-lang-en="Enhances your existing protection">Förstärker ert befintliga skydd</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Score -->
+    <section id="trust-score" class="trust-section">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label">Koda Trust Score</span>
+            <h2 class="section-title" data-lang-sv="Mätbar säkerhet i realtid" data-lang-en="Measurable security in real-time">Mätbar säkerhet i realtid</h2>
+            <p class="section-description" data-lang-sv="Fyra pelare som ger er konkret bevis på säkerhetsnivån – varje kontroll skapar revisionsunderlag." data-lang-en="Four pillars that give you concrete proof of security level – every check creates audit documentation.">
+                Fyra pelare som ger er konkret bevis på säkerhetsnivån – varje kontroll skapar revisionsunderlag.
+            </p>
+        </div>
+
+        <div class="trust-pillars">
+            <div class="pillar animate-on-scroll">
+                <div class="pillar-icon">📦</div>
+                <h4>Data Containment</h4>
+                <p data-lang-sv="Inga dataflöden utanför definierade zoner. Garanterar att känslig data stannar där den ska." data-lang-en="No data flows outside defined zones. Guarantees sensitive data stays where it should.">Inga dataflöden utanför definierade zoner. Garanterar att känslig data stannar där den ska.</p>
+            </div>
+            <div class="pillar animate-on-scroll">
+                <div class="pillar-icon">🔑</div>
+                <h4 data-lang-sv="Behörighet" data-lang-en="Authorization">Behörighet</h4>
+                <p data-lang-sv="Åtkomstmönster och behörighetsefterlevnad. Upptäcker obehörig eller avvikande åtkomst." data-lang-en="Access patterns and authorization compliance. Detects unauthorized or anomalous access.">Åtkomstmönster och behörighetsefterlevnad. Upptäcker obehörig eller avvikande åtkomst.</p>
+            </div>
+            <div class="pillar animate-on-scroll">
+                <div class="pillar-icon">💚</div>
+                <h4 data-lang-sv="Systemhälsa" data-lang-en="System Health">Systemhälsa</h4>
+                <p data-lang-sv="Integritet, patchnivå, konfigurationsstatus. Säkerställer att systemet är uppdaterat och oförändrat." data-lang-en="Integrity, patch level, configuration status. Ensures system is updated and unaltered.">Integritet, patchnivå, konfigurationsstatus. Säkerställer att systemet är uppdaterat och oförändrat.</p>
+            </div>
+            <div class="pillar animate-on-scroll">
+                <div class="pillar-icon">📋</div>
+                <h4 data-lang-sv="Revisionsunderlag" data-lang-en="Audit Trail">Revisionsunderlag</h4>
+                <p data-lang-sv="Vad, när, av vem, med vilket resultat. Ger spårbarhet och beviskedja vid granskning." data-lang-en="What, when, by whom, with what result. Provides traceability and evidence chain for audits.">Vad, när, av vem, med vilket resultat. Ger spårbarhet och beviskedja vid granskning.</p>
+            </div>
+        </div>
+
+        <div class="demo-container animate-on-scroll">
+            <div class="demo-header">
+                <div class="demo-title" data-lang-sv="Notis: Driftstatus (Historik)" data-lang-en="Notice: Operational Status (History)">Notis: Driftstatus (Historik)</div>
+                <div class="demo-time">
+                    <span>14:35</span>
+                    <span class="demo-level" data-lang-sv="Gul (Varning)" data-lang-en="Yellow (Warning)">Gul (Varning)</span>
+                </div>
+            </div>
+            <div class="demo-message" data-lang-sv="&quot;Databasen är tillfälligt överbelastad.&quot;" data-lang-en="&quot;The database is temporarily overloaded.&quot;">"Databasen är tillfälligt överbelastad."</div>
+            <div class="demo-details">
+                <div class="demo-row">
+                    <span class="demo-label" data-lang-sv="Analys:" data-lang-en="Analysis:">Analys:</span>
+                    <span class="demo-value" data-lang-sv="En plötslig ökning av inkommande data noterades." data-lang-en="A sudden increase in incoming data was detected.">En plötslig ökning av inkommande data noterades.</span>
+                </div>
+                <div class="demo-row">
+                    <span class="demo-label" data-lang-sv="Säkerhet:" data-lang-en="Security:">Säkerhet:</span>
+                    <span class="demo-value" data-lang-sv="Ingen data har läckt ut. Koda Trust Score är opåverkat." data-lang-en="No data has leaked. Koda Trust Score is unaffected.">Ingen data har läckt ut. Koda Trust Score är opåverkat.</span>
+                </div>
+                <div class="demo-row">
+                    <span class="demo-label" data-lang-sv="Åtgärd:" data-lang-en="Action:">Åtgärd:</span>
+                    <span class="demo-value" data-lang-sv="Jag har tillfälligt utökat databasens kapacitet för att hantera trycket." data-lang-en="I have temporarily expanded database capacity to handle the load.">Jag har tillfälligt utökat databasens kapacitet för att hantera trycket.</span>
+                </div>
+                <div class="demo-row">
+                    <span class="demo-label" data-lang-sv="Status nu:" data-lang-en="Current status:">Status nu:</span>
+                    <span class="demo-value" data-lang-sv="Systemet fungerar normalt och inga användare påverkades." data-lang-en="The system is functioning normally and no users were affected.">Systemet fungerar normalt och inga användare påverkades.</span>
+                </div>
+            </div>
+            <div class="demo-signature" data-lang-sv="– Din ERS" data-lang-en="– Your ERS">– Din ERS</div>
+        </div>
+    </section>
+
+    <!-- Data Ownership -->
+    <section id="security" class="ownership-section">
+        <div class="ownership-grid">
+            <div class="ownership-content animate-on-scroll">
+                <span class="section-label" data-lang-sv="Dataägarskap" data-lang-en="Data Ownership">Dataägarskap</span>
+                <h3 data-lang-sv="Allt minne är <span>kundägt.</span> Punkt." data-lang-en="All memory is <span>customer-owned.</span> Period.">Allt minne är <span>kundägt.</span> Punkt.</h3>
+                <p class="section-description" data-lang-sv="ERS ger er full kontroll över hur systemminne hanteras. Leverantören har ingen åtkomst till kunddata eller analysinnehåll." data-lang-en="ERS gives you full control over how system memory is managed. The vendor has no access to customer data or analysis content.">
+                    ERS ger er full kontroll över hur systemminne hanteras.
+                    Leverantören har ingen åtkomst till kunddata eller analysinnehåll.
+                </p>
+                <ul class="ownership-list">
+                    <li>
+                        <span class="icon">⏱️</span>
+                        <div>
+                            <strong data-lang-sv="Tidsbegränsat minne" data-lang-en="Time-limited memory">Tidsbegränsat minne</strong>
+                            <span data-lang-sv="Konfigurerbar livslängd (t.ex. 1 dygn, 1 vecka)" data-lang-en="Configurable lifespan (e.g., 1 day, 1 week)">Konfigurerbar livslängd (t.ex. 1 dygn, 1 vecka)</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">🗑️</span>
+                        <div>
+                            <strong data-lang-sv="Automatisk radering" data-lang-en="Automatic deletion">Automatisk radering</strong>
+                            <span data-lang-sv="Minne rensas enligt era regler utan manuell hantering" data-lang-en="Memory is cleared according to your rules without manual handling">Minne rensas enligt era regler utan manuell hantering</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="icon">📜</span>
+                        <div>
+                            <strong data-lang-sv="Policy-styrt" data-lang-en="Policy-controlled">Policy-styrt</strong>
+                            <span data-lang-sv="Er organisation bestämmer vad som sparas, hur länge, och när det tas bort" data-lang-en="Your organization decides what is saved, for how long, and when it's removed">Er organisation bestämmer vad som sparas, hur länge, och när det tas bort</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ownership-visual animate-on-scroll">
+                <div class="data-flow">
+                    <div class="flow-item">
+                        <div class="flow-icon">📄</div>
+                        <div>
+                            <strong data-lang-sv="Era dokument" data-lang-en="Your documents">Era dokument</strong>
+                            <div style="color: var(--silver); font-size: 0.9rem;" data-lang-sv="Journaler, rapporter, känslig data" data-lang-en="Records, reports, sensitive data">Journaler, rapporter, känslig data</div>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-item">
+                        <div class="flow-icon">🔐</div>
+                        <div>
+                            <strong>ERS Memory Vault</strong>
+                            <div style="color: var(--silver); font-size: 0.9rem;" data-lang-sv="Lokal analys och inlärning" data-lang-en="Local analysis and learning">Lokal analys och inlärning</div>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-item">
+                        <div class="flow-icon">📊</div>
+                        <div>
+                            <strong data-lang-sv="Insikter till er" data-lang-en="Insights to you">Insikter till er</strong>
+                            <div style="color: var(--silver); font-size: 0.9rem;" data-lang-sv="Resultat och rapporter" data-lang-en="Results and reports">Resultat och rapporter</div>
+                        </div>
+                    </div>
+                    <div class="flow-arrow">✕</div>
+                    <div class="flow-item flow-blocked">
+                        <div class="flow-icon">☁️</div>
+                        <div>
+                            <strong style="color: var(--danger);" data-lang-sv="Externt moln" data-lang-en="External cloud">Externt moln</strong>
+                            <div style="color: var(--silver); font-size: 0.9rem;" data-lang-sv="Ingen data lämnar er miljö" data-lang-en="No data leaves your environment">Ingen data lämnar er miljö</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logs in Natural Language -->
+    <section class="logs-section">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label" data-lang-sv="Naturligt språk" data-lang-en="Natural Language">Naturligt språk</span>
+            <h2 class="section-title" data-lang-sv="Loggar på ert språk" data-lang-en="Logs in your language">Loggar på ert språk</h2>
+            <p class="section-description" data-lang-sv="Chefer och beslutsfattare kan förstå säkerhetsläget direkt – utan att vara IT-experter." data-lang-en="Managers and decision-makers can understand security status directly – without being IT experts.">
+                Chefer och beslutsfattare kan förstå säkerhetsläget direkt – utan att vara IT-experter.
+            </p>
+        </div>
+
+        <div class="logs-comparison">
+            <div class="log-panel technical animate-on-scroll">
+                <div class="log-header" data-lang-sv="Tekniker ser" data-lang-en="Technician sees">Tekniker ser</div>
+                <div class="log-content">
+                    <div class="log-line"><span class="error">Error: 503 Service Unavailable</span></div>
+                    <div class="log-line">timeout: 3000ms</div>
+                    <div class="log-line">retry_count: 3</div>
+                    <div class="log-line"><span class="warning">WARN: Access_Denied_Vault_7</span></div>
+                    <div class="log-line">severity: WARNING</div>
+                    <div class="log-line">user_id: null</div>
+                    <div class="log-line"><span class="info">INFO: connection_pool_exhausted</span></div>
+                </div>
+            </div>
+            <div class="log-panel natural animate-on-scroll">
+                <div class="log-header" data-lang-sv="ERS-användaren ser" data-lang-en="ERS user sees">ERS-användaren ser</div>
+                <div class="log-content">
+                    <p style="margin-bottom: 1rem;" data-lang-sv="<strong>14:32</strong> – Systemet fick ingen kontakt med databasen, det tog för lång tid. Försöker igen." data-lang-en="<strong>14:32</strong> – The system couldn't reach the database, it took too long. Retrying.">
+                        <strong>14:32</strong> – Systemet fick ingen kontakt med databasen, det tog för lång tid. Försöker igen.
+                    </p>
+                    <p style="margin-bottom: 1rem;" data-lang-sv="<strong>14:33</strong> – Någon försökte öppna en skyddad mapp utan behörighet. Händelsen är loggad." data-lang-en="<strong>14:33</strong> – Someone tried to open a protected folder without permission. The event has been logged.">
+                        <strong>14:33</strong> – Någon försökte öppna en skyddad mapp utan behörighet. Händelsen är loggad.
+                    </p>
+                    <p data-lang-sv="<strong>14:35</strong> – Databasen är tillfälligt överbelastad. Jag har utökat kapaciteten automatiskt." data-lang-en="<strong>14:35</strong> – The database is temporarily overloaded. I have expanded capacity automatically.">
+                        <strong>14:35</strong> – Databasen är tillfälligt överbelastad. Jag har utökat kapaciteten automatiskt.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation & Updates -->
+    <section id="installation" class="install-section">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label" data-lang-sv="Drift" data-lang-en="Operations">Drift</span>
+            <h2 class="section-title" data-lang-sv="Installation &amp; uppdateringar" data-lang-en="Installation &amp; updates">Installation & uppdateringar</h2>
+            <p class="section-description" data-lang-sv="Smidig integration i befintlig IT-miljö med full kontroll hos er." data-lang-en="Smooth integration into existing IT environment with full control with you.">
+                Smidig integration i befintlig IT-miljö med full kontroll hos er.
+            </p>
+            <p class="section-description" style="margin-top: 1rem;" data-lang-sv="ERS installeras lokalt och är avsett att skydda dokument och analysflöden – inte att ersätta befintlig IT-drift eller verksamhetslogik." data-lang-en="ERS is installed locally and is designed to protect documents and analysis flows – not to replace existing IT operations or business logic.">
+                ERS installeras lokalt och är avsett att skydda dokument och analysflöden – inte att ersätta befintlig IT-drift eller verksamhetslogik.
+            </p>
+        </div>
+
+        <div class="install-cards">
+            <div class="install-card animate-on-scroll">
+                <h3 data-lang-sv="🖥️ Enkel serverinstallation" data-lang-en="🖥️ Easy server installation">🖥️ Enkel serverinstallation</h3>
+                <p data-lang-sv="Installation sker lokalt i er miljö och kan genomföras på distans i samverkan med er IT-avdelning." data-lang-en="Installation takes place locally in your environment and can be performed remotely in collaboration with your IT department.">Installation sker lokalt i er miljö och kan genomföras på distans i samverkan med er IT-avdelning.</p>
+                <ul class="install-list">
+                    <li data-lang-sv="Minimal konfiguration för att komma igång" data-lang-en="Minimal configuration to get started">Minimal konfiguration för att komma igång</li>
+                    <li data-lang-sv="Samarbetar med befintliga antiviruslösningar" data-lang-en="Collaborates with existing antivirus solutions">Samarbetar med befintliga antiviruslösningar</li>
+                    <li data-lang-sv="Snabb driftsättning" data-lang-en="Quick deployment">Snabb driftsättning</li>
+                    <li data-lang-sv="Leverantören har ingen åtkomst till kunddata" data-lang-en="The vendor has no access to customer data">Leverantören har ingen åtkomst till kunddata</li>
+                </ul>
+            </div>
+            <div class="install-card animate-on-scroll">
+                <h3 data-lang-sv="🔄 Uppdateringar utan insyn" data-lang-en="🔄 Updates without exposure">🔄 Uppdateringar utan insyn</h3>
+                <p data-lang-sv="ERS uppdateras via kryptografiskt signerade systempaket. Uppdateringar påverkar aldrig dokument eller analysinnehåll." data-lang-en="ERS is updated via cryptographically signed system packages. Updates never affect documents or analysis content.">ERS uppdateras via kryptografiskt signerade systempaket. Uppdateringar påverkar aldrig dokument eller analysinnehåll.</p>
+                <ul class="install-list">
+                    <li data-lang-sv="Inga fjärrinloggningar till kundmiljö" data-lang-en="No remote logins to customer environment">Inga fjärrinloggningar till kundmiljö</li>
+                    <li data-lang-sv="Ingen åtkomst till data, minnen eller loggar" data-lang-en="No access to data, memories or logs">Ingen åtkomst till data, minnen eller loggar</li>
+                    <li data-lang-sv="Automatisk verifiering efter uppdatering" data-lang-en="Automatic verification after update">Automatisk verifiering efter uppdatering</li>
+                    <li data-lang-sv="Säker återställning vid avvikelse" data-lang-en="Safe rollback in case of deviation">Säker återställning vid avvikelse</li>
+                    <li data-lang-sv="Full lokal spårbarhet för revision" data-lang-en="Full local traceability for auditing">Full lokal spårbarhet för revision</li>
+                </ul>
+                <div class="principle-quote" data-lang-sv="&quot;Vi uppdaterar systemet – inte er information.&quot;" data-lang-en="&quot;We update the system – not your information.&quot;">"Vi uppdaterar systemet – inte er information."</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Virus Protection -->
+    <section class="features" style="padding-top: 8rem;">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label" data-lang-sv="Skydd" data-lang-en="Protection">Skydd</span>
+            <h2 class="section-title" data-lang-sv="Samverkan med virusskydd" data-lang-en="Integration with antivirus">Samverkan med virusskydd</h2>
+            <p class="section-description" data-lang-sv="ERS övervakar kontinuerligt ert interna nätverk och samarbetar sömlöst med befintliga antiviruslösningar." data-lang-en="ERS continuously monitors your internal network and collaborates seamlessly with existing antivirus solutions.">
+                ERS övervakar kontinuerligt ert interna nätverk och samarbetar sömlöst med befintliga antiviruslösningar.
+            </p>
+        </div>
+
+        <div class="virus-features">
+            <div class="virus-card animate-on-scroll">
+                <div class="virus-icon">👁️</div>
+                <h4 data-lang-sv="Tidig upptäckt" data-lang-en="Early detection">Tidig upptäckt</h4>
+                <p data-lang-sv="Identifierar avvikande beteende i nätverkstrafiken innan det blir ett problem" data-lang-en="Identifies anomalous behavior in network traffic before it becomes a problem">Identifierar avvikande beteende i nätverkstrafiken innan det blir ett problem</p>
+            </div>
+            <div class="virus-card animate-on-scroll">
+                <div class="virus-icon">🤝</div>
+                <h4 data-lang-sv="Samordnad respons" data-lang-en="Coordinated response">Samordnad respons</h4>
+                <p data-lang-sv="Vid hot aktiveras ert befintliga antivirusprogram automatiskt" data-lang-en="When threats are detected, your existing antivirus program is automatically activated">Vid hot aktiveras ert befintliga antivirusprogram automatiskt</p>
+            </div>
+            <div class="virus-card animate-on-scroll">
+                <div class="virus-icon">🛡️</div>
+                <h4 data-lang-sv="Reservåtgärd" data-lang-en="Backup action">Reservåtgärd</h4>
+                <p data-lang-sv="Om antivirusprogrammet inte agerar initierar ERS skyddsåtgärder enligt definierad policy" data-lang-en="If the antivirus program doesn't respond, ERS initiates protective measures according to defined policy">Om antivirusprogrammet inte agerar initierar ERS skyddsåtgärder enligt definierad policy</p>
+            </div>
+            <div class="virus-card animate-on-scroll">
+                <div class="virus-icon">➕</div>
+                <h4 data-lang-sv="Kompletterande" data-lang-en="Complementary">Kompletterande</h4>
+                <p data-lang-sv="ERS ersätter inte ert antivirusprogram – det förstärker det" data-lang-en="ERS doesn't replace your antivirus program – it enhances it">ERS ersätter inte ert antivirusprogram – det förstärker det</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Procurement -->
+    <section class="procurement-section">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label" data-lang-sv="Upphandling" data-lang-en="Procurement">Upphandling</span>
+            <h2 class="section-title" data-lang-sv="Anpassat för offentlig och privat upphandling" data-lang-en="Designed for public and private procurement">Anpassat för offentlig och privat upphandling</h2>
+        </div>
+
+        <div class="procurement-badges animate-on-scroll">
+            <div class="procurement-badge">
+                <span class="icon">🇪🇺</span>
+                <span class="text" data-lang-sv="NIS2-kompatibilitet" data-lang-en="NIS2 compatibility">NIS2-kompatibilitet</span>
+            </div>
+            <div class="procurement-badge">
+                <span class="icon">📋</span>
+                <span class="text" data-lang-sv="Revisionsunderlag" data-lang-en="Audit documentation">Revisionsunderlag</span>
+            </div>
+            <div class="procurement-badge">
+                <span class="icon">⚙️</span>
+                <span class="text" data-lang-sv="Konfigurerbar policy" data-lang-en="Configurable policy">Konfigurerbar policy</span>
+            </div>
+            <div class="procurement-badge">
+                <span class="icon">🏠</span>
+                <span class="text" data-lang-sv="Lokal drift" data-lang-en="Local operation">Lokal drift</span>
+            </div>
+        </div>
+
+        <div class="summary-table animate-on-scroll">
+            <div class="summary-row header">
+                <div class="cell" data-lang-sv="Utmaning" data-lang-en="Challenge">Utmaning</div>
+                <div class="cell" data-lang-sv="ERS-lösning" data-lang-en="ERS Solution">ERS-lösning</div>
+            </div>
+            <div class="summary-row">
+                <div class="cell challenge" data-lang-sv="Data kan läcka till externa system" data-lang-en="Data can leak to external systems">Data kan läcka till externa system</div>
+                <div class="cell solution" data-lang-sv="All bearbetning sker lokalt" data-lang-en="All processing occurs locally">All bearbetning sker lokalt</div>
+            </div>
+            <div class="summary-row">
+                <div class="cell challenge" data-lang-sv="Svårt att bevisa säkerhet" data-lang-en="Difficult to prove security">Svårt att bevisa säkerhet</div>
+                <div class="cell solution" data-lang-sv="Koda Trust Score med revisionsunderlag" data-lang-en="Koda Trust Score with audit trail">Koda Trust Score med revisionsunderlag</div>
+            </div>
+            <div class="summary-row">
+                <div class="cell challenge" data-lang-sv="System lär sig på andras data" data-lang-en="Systems learn from others' data">System lär sig på andras data</div>
+                <div class="cell solution" data-lang-sv="ERS Memory Vaults – isolerad inlärning" data-lang-en="ERS Memory Vaults – isolated learning">ERS Memory Vaults – isolerad inlärning</div>
+            </div>
+            <div class="summary-row">
+                <div class="cell challenge" data-lang-sv="Bristande spårbarhet vid incidenter" data-lang-en="Lack of traceability during incidents">Bristande spårbarhet vid incidenter</div>
+                <div class="cell solution" data-lang-sv="ERS som revisionsstöd med beviskedja" data-lang-en="ERS as audit support with evidence chain">ERS som revisionsstöd med beviskedja</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="contact-section">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</span>
+            <h2 class="section-title" data-lang-sv="Boka en demonstration" data-lang-en="Book a demonstration">Boka en demonstration</h2>
+            <p class="section-description" data-lang-sv="För mer information om ERS och hur det kan anpassas för er organisation." data-lang-en="For more information about ERS and how it can be adapted for your organization.">
+                För mer information om ERS och hur det kan anpassas för er organisation.
+            </p>
+        </div>
+
+        <div class="contact-content animate-on-scroll">
+            <div class="contact-name">Mats Hamberg</div>
+            <div class="contact-title" data-lang-sv="Grundare och ansvarig VD" data-lang-en="Founder and CEO">Grundare och ansvarig VD</div>
+
+            <div class="contact-info">
+                <div class="contact-item">
+                    <span class="icon">📧</span>
+                    <a href="mailto:info@nordicintegrity.se">info@nordicintegrity.se</a>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">📞</span>
+                    <a href="tel:+46700377459">070-037 74 59</a>
+                </div>
+            </div>
+
+            <a href="mailto:info@nordicintegrity.se?subject=Demo%20av%20ERS" class="btn-primary" data-lang-sv="Kontakta oss" data-lang-en="Contact us">Kontakta oss</a>
+
+            <div class="company-logo">
+                <div class="company-name">Nordic Integrity Systems AB</div>
+                <div class="company-tagline" data-lang-sv="Insikter utan insyn." data-lang-en="Insights without exposure.">Insikter utan insyn.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p data-lang-sv="© 2025 Nordic Integrity Systems AB. Alla rättigheter förbehållna." data-lang-en="© 2025 Nordic Integrity Systems AB. All rights reserved.">© 2025 Nordic Integrity Systems AB. Alla rättigheter förbehållna.</p>
+    </footer>
+
+    <script>
+        // Language switching
+        let currentLang = 'sv';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+
+            // Update button states
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`.lang-btn[onclick="setLanguage('${lang}')"]`).classList.add('active');
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-lang-sv]').forEach(el => {
+                const text = el.getAttribute(`data-lang-${lang}`);
+                if (text) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = text;
+                    } else {
+                        el.innerHTML = text;
+                    }
+                }
+            });
+
+            // Update HTML lang attribute
+            document.documentElement.lang = lang;
+
+            // Store preference
+            localStorage.setItem('ers-lang', lang);
+        }
+
+        // Load saved language preference
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('ers-lang');
+            if (savedLang && savedLang !== currentLang) {
+                setLanguage(savedLang);
+            }
+        });
+
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(10, 22, 40, 0.95)';
+            } else {
+                nav.style.background = 'rgba(10, 22, 40, 0.8)';
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
