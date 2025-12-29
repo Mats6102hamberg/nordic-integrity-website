@@ -1382,8 +1382,8 @@
                 utan att en enda byte data lämnar er kontroll.
             </p>
             <div class="hero-buttons">
-                <a href="#contact" class="btn-primary" data-lang-sv="Kontakta oss" data-lang-en="Contact us">Kontakta oss</a>
-                <a href="#features" class="btn-secondary" data-lang-sv="Läs mer" data-lang-en="Learn more">Läs mer</a>
+                <a href="#contact" class="btn-primary" data-lang-sv="Boka demo" data-lang-en="Book demo">Boka demo</a>
+                <a href="docs/ERS-OnePager-SV.pdf" class="btn-secondary" download data-lang-sv="Ladda ner OnePager" data-lang-en="Download OnePager">Ladda ner OnePager</a>
             </div>
         </div>
         <div class="hero-visual">
@@ -1541,6 +1541,10 @@
                 </div>
             </div>
             <div class="demo-signature" data-lang-sv="– Din ERS" data-lang-en="– Your ERS">– Din ERS</div>
+        </div>
+
+        <div style="text-align: center; margin-top: 4rem;" class="animate-on-scroll">
+            <a href="#contact" class="btn-primary" data-lang-sv="Boka demo" data-lang-en="Book demo">Boka demo</a>
         </div>
     </section>
 
@@ -1777,6 +1781,10 @@
                 <div class="cell solution" data-lang-sv="ERS som revisionsstöd med beviskedja" data-lang-en="ERS as audit support with evidence chain">ERS som revisionsstöd med beviskedja</div>
             </div>
         </div>
+
+        <div style="text-align: center; margin-top: 4rem;" class="animate-on-scroll">
+            <a href="#contact" class="btn-primary" data-lang-sv="Boka demo" data-lang-en="Book demo">Boka demo</a>
+        </div>
     </section>
 
     <!-- Documentation -->
@@ -1998,6 +2006,13 @@
                         el.innerHTML = text;
                     }
                 }
+            });
+
+            // Update OnePager download link based on language
+            const onePagerLinks = document.querySelectorAll('a[href*="OnePager"]');
+            onePagerLinks.forEach(link => {
+                const langCode = lang === 'sv' ? 'SV' : lang === 'en' ? 'EN' : 'DE';
+                link.href = `docs/ERS-OnePager-${langCode}.pdf`;
             });
 
             // Update HTML lang attribute
