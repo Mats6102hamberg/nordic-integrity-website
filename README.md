@@ -1,4 +1,4 @@
-# ERS Website
+# Nordic Integrity System AB 
 
 Officiell hemsida för **Enterprise Research Shield** (ERS)
 
