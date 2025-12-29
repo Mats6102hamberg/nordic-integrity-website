@@ -653,6 +653,33 @@
             border-radius: 4px;
         }
 
+        .demo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--warning) 100%);
+            color: var(--deep-navy);
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            margin-right: 0.5rem;
+            box-shadow: 0 2px 8px rgba(234, 179, 8, 0.3);
+        }
+
+        .demo-intro {
+            text-align: center;
+            font-size: 0.95rem;
+            color: var(--silver);
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .demo-intro strong {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
         .demo-message {
             font-size: 1.25rem;
             font-style: italic;
@@ -1652,9 +1679,16 @@
             </div>
         </div>
 
+        <div class="demo-intro animate-on-scroll">
+            <p data-lang-sv="<strong>Exempel (demo):</strong> Så här ser en händelse ut när ERS agerar självständigt." data-lang-en="<strong>Example (demo):</strong> This is how an event looks when ERS acts autonomously."><strong>Exempel (demo):</strong> Så här ser en händelse ut när ERS agerar självständigt.</p>
+        </div>
+
         <div class="demo-container animate-on-scroll">
             <div class="demo-header">
-                <div class="demo-title" data-lang-sv="Notis: Driftstatus (Historik)" data-lang-en="Notice: Operational Status (History)">Notis: Driftstatus (Historik)</div>
+                <div class="demo-title">
+                    <span class="demo-badge">DEMO</span>
+                    <span data-lang-sv="Notis: Driftstatus (Historik)" data-lang-en="Notice: Operational Status (History)">Notis: Driftstatus (Historik)</span>
+                </div>
                 <div class="demo-time">
                     <span>14:35</span>
                     <span class="demo-level" data-lang-sv="Gul (Varning)" data-lang-en="Yellow (Warning)">Gul (Varning)</span>
