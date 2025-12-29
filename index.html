@@ -1223,6 +1223,88 @@
             font-size: 1.2rem;
         }
 
+        /* About Section */
+        .about-section {
+            background: linear-gradient(180deg, var(--deep-navy) 0%, rgba(15, 23, 42, 0.95) 100%);
+            padding: 6rem 2rem;
+        }
+
+        .about-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .about-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(184, 151, 106, 0.2);
+            border-radius: 20px;
+            padding: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(184, 151, 106, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .about-card-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(184, 151, 106, 0.3);
+        }
+
+        .about-card-content {
+            color: var(--ice);
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        .about-card-content p {
+            margin-bottom: 1.25rem;
+        }
+
+        .about-card-content strong {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .about-principles {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(184, 151, 106, 0.05);
+            border-left: 3px solid var(--gold);
+            border-radius: 8px;
+        }
+
+        .about-principles p {
+            margin-bottom: 0.5rem;
+            font-style: italic;
+            color: var(--silver);
+        }
+
+        .about-principles p:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 768px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-card {
+                padding: 2rem;
+            }
+        }
+
         /* Contact */
         .contact-section {
             background: var(--gradient-hero);
@@ -1523,6 +1605,7 @@
             <li><a href="#security" data-lang-sv="Säkerhet" data-lang-en="Security">Säkerhet</a></li>
             <li><a href="#installation" data-lang-sv="Installation" data-lang-en="Installation">Installation</a></li>
             <li><a href="#documentation" data-lang-sv="Dokument" data-lang-en="Documents">Dokument</a></li>
+            <li><a href="#about" data-lang-sv="Om oss" data-lang-en="About">Om oss</a></li>
             <li><a href="#contact" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</a></li>
         </ul>
         <a href="#contact" class="nav-cta" data-lang-sv="Boka demo" data-lang-en="Book demo">Boka demo</a>
@@ -2040,6 +2123,68 @@
                         <span data-lang-sv="Tyska" data-lang-en="German">Tyska</span>
                         <span class="icon">↓</span>
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="about-section">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label" data-lang-sv="Om oss" data-lang-en="About Us">Om oss</span>
+            <h2 class="section-title" data-lang-sv="Ansvar, integritet och <span>verklig erfarenhet</span>" data-lang-en="Responsibility, integrity, and <span>real experience</span>">Ansvar, integritet och <span>verklig erfarenhet</span></h2>
+        </div>
+
+        <div class="about-grid">
+            <!-- About Mats -->
+            <div class="about-card animate-on-scroll">
+                <h3 class="about-card-title" data-lang-sv="Om mig" data-lang-en="About Me">Om mig</h3>
+                <div class="about-card-content">
+                    <p data-lang-sv="Jag är utbildad socionom och har under många år arbetat med verksamheter där människors liv, integritet och framtid står i centrum. I roller som familjehems-inspektör och familjehemssekreterare har jag haft ansvar för att granska, följa upp och kvalitetssäkra insatser där ett enda misstag kan få långtgående konsekvenser – juridiskt, mänskligt och samhälleligt." data-lang-en="I am a trained social worker and have for many years worked with operations where people's lives, privacy, and future are at the center. In roles as foster care inspector and foster care secretary, I have been responsible for reviewing, monitoring, and quality-assuring interventions where a single mistake can have far-reaching consequences – legally, humanly, and societally.">Jag är utbildad socionom och har under många år arbetat med verksamheter där människors liv, integritet och framtid står i centrum. I roller som familjehems-inspektör och familjehemssekreterare har jag haft ansvar för att granska, följa upp och kvalitetssäkra insatser där ett enda misstag kan få långtgående konsekvenser – juridiskt, mänskligt och samhälleligt.</p>
+
+                    <p data-lang-sv="Det arbetet har format min syn på system, dokumentation och ansvar." data-lang-en="That work has shaped my view on systems, documentation, and responsibility.">Det arbetet har format min syn på system, dokumentation och ansvar.</p>
+
+                    <p data-lang-sv="Jag har sett hur välmenande organisationer kan hamna fel när komplex information hanteras utan tillräckligt skydd, struktur eller förståelse för sammanhanget. Jag har också sett hur tekniska lösningar ibland införs utan respekt för sekretess, lagstiftning eller verksamhetens verkliga behov." data-lang-en="I have seen how well-meaning organizations can go wrong when complex information is handled without sufficient protection, structure, or understanding of context. I have also seen how technical solutions are sometimes implemented without respect for confidentiality, legislation, or the real needs of the operation.">Jag har sett hur välmenande organisationer kan hamna fel när komplex information hanteras utan tillräckligt skydd, struktur eller förståelse för sammanhanget. Jag har också sett hur tekniska lösningar ibland införs utan respekt för sekretess, lagstiftning eller verksamhetens verkliga behov.</p>
+
+                    <p data-lang-sv="<strong>Enterprise Research Shield (ERS)</strong> är fött ur den erfarenheten." data-lang-en="<strong>Enterprise Research Shield (ERS)</strong> was born from that experience."><strong>Enterprise Research Shield (ERS)</strong> är fött ur den erfarenheten.</p>
+
+                    <p data-lang-sv="ERS är inte skapat för att ersätta människor, utan för att skydda verksamheter från oavsiktliga misstag, informationsläckor och felaktig användning av känsligt material. Fokus har från början varit tydligt: analys ska kunna ske lokalt, under full kontroll, utan att information lämnar organisationen." data-lang-en="ERS is not created to replace people, but to protect operations from unintentional mistakes, information leaks, and incorrect use of sensitive material. The focus has been clear from the start: analysis should be able to take place locally, under full control, without information leaving the organization.">ERS är inte skapat för att ersätta människor, utan för att skydda verksamheter från oavsiktliga misstag, informationsläckor och felaktig användning av känsligt material. Fokus har från början varit tydligt: analys ska kunna ske lokalt, under full kontroll, utan att information lämnar organisationen.</p>
+
+                    <p data-lang-sv="Min bakgrund gör att jag närmar mig teknik med samma grundprinciper som socialt arbete och tillsyn:" data-lang-en="My background means I approach technology with the same fundamental principles as social work and supervision:">Min bakgrund gör att jag närmar mig teknik med samma grundprinciper som socialt arbete och tillsyn:</p>
+
+                    <div class="about-principles">
+                        <p data-lang-sv="ansvar före bekvämlighet" data-lang-en="responsibility before convenience">ansvar före bekvämlighet</p>
+                        <p data-lang-sv="integritet före effektivitet" data-lang-en="privacy before efficiency">integritet före effektivitet</p>
+                        <p data-lang-sv="långsiktigt förtroende före kortsiktiga vinster" data-lang-en="long-term trust before short-term gains">långsiktigt förtroende före kortsiktiga vinster</p>
+                    </div>
+
+                    <p data-lang-sv="ERS är därför inte ett experiment, utan ett verktyg byggt för miljöer där kraven är som högst." data-lang-en="ERS is therefore not an experiment, but a tool built for environments where requirements are highest.">ERS är därför inte ett experiment, utan ett verktyg byggt för miljöer där kraven är som högst.</p>
+                </div>
+            </div>
+
+            <!-- About Team -->
+            <div class="about-card animate-on-scroll">
+                <h3 class="about-card-title" data-lang-sv="Om teamet" data-lang-en="About the Team">Om teamet</h3>
+                <div class="about-card-content">
+                    <p data-lang-sv="Bakom ERS står ett litet, fokuserat team med lång samlad erfarenhet av säkerhetskritiska verksamheter, analys, systemarkitektur och operativt ansvar. Arbetet med ERS har pågått kontinuerligt sedan årets början, med ett tydligt mål: att bygga en lösning som faktiskt fungerar i verkliga organisationer – inte bara i teorin." data-lang-en="Behind ERS stands a small, focused team with long combined experience from security-critical operations, analysis, system architecture, and operational responsibility. Work on ERS has been ongoing continuously since the beginning of the year, with a clear goal: to build a solution that actually works in real organizations – not just in theory.">Bakom ERS står ett litet, fokuserat team med lång samlad erfarenhet av säkerhetskritiska verksamheter, analys, systemarkitektur och operativt ansvar. Arbetet med ERS har pågått kontinuerligt sedan årets början, med ett tydligt mål: att bygga en lösning som faktiskt fungerar i verkliga organisationer – inte bara i teorin.</p>
+
+                    <p data-lang-sv="Teamet kombinerar:" data-lang-en="The team combines:">Teamet kombinerar:</p>
+
+                    <div class="about-principles">
+                        <p data-lang-sv="verksamhetsförståelse från offentlig sektor och reglerade miljöer" data-lang-en="operational understanding from the public sector and regulated environments">verksamhetsförståelse från offentlig sektor och reglerade miljöer</p>
+                        <p data-lang-sv="teknisk kompetens inom lokal analys, systemintegration och drift" data-lang-en="technical competence in local analysis, system integration, and operations">teknisk kompetens inom lokal analys, systemintegration och drift</p>
+                        <p data-lang-sv="ett konsekvent fokus på dataskydd, spårbarhet och kontroll" data-lang-en="a consistent focus on data protection, traceability, and control">ett konsekvent fokus på dataskydd, spårbarhet och kontroll</p>
+                    </div>
+
+                    <p data-lang-sv="Utvecklingen sker iterativt och behovsstyrt. Funktioner införs först när de uppfyller kraven på säkerhet, stabilitet och juridisk hållbarhet. ERS är därför resultatet av praktiskt arbete, verkliga problem och tydliga gränser – inte en snabb produktlansering." data-lang-en="Development happens iteratively and need-driven. Features are introduced only when they meet requirements for security, stability, and legal sustainability. ERS is therefore the result of practical work, real problems, and clear boundaries – not a quick product launch.">Utvecklingen sker iterativt och behovsstyrt. Funktioner införs först när de uppfyller kraven på säkerhet, stabilitet och juridisk hållbarhet. ERS är därför resultatet av praktiskt arbete, verkliga problem och tydliga gränser – inte en snabb produktlansering.</p>
+
+                    <p data-lang-sv="Teamets gemensamma hållning är enkel:" data-lang-en="The team's common stance is simple:">Teamets gemensamma hållning är enkel:</p>
+
+                    <div class="about-principles">
+                        <p data-lang-sv="Om en lösning inte kan försvaras inför IT-säkerhet, juridik och verksamhetsansvariga samtidigt – då ska den inte införas." data-lang-en="If a solution cannot be defended before IT security, legal, and operational managers simultaneously – then it should not be introduced.">Om en lösning inte kan försvaras inför IT-säkerhet, juridik och verksamhetsansvariga samtidigt – då ska den inte införas.</p>
+                    </div>
+
+                    <p data-lang-sv="Det är den principen som genomsyrar hela ERS." data-lang-en="That is the principle that permeates all of ERS.">Det är den principen som genomsyrar hela ERS.</p>
                 </div>
             </div>
         </div>
