@@ -1248,6 +1248,41 @@
             color: var(--gold);
         }
 
+        .contact-meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: rgba(184, 151, 106, 0.05);
+            border-radius: 12px;
+            border: 1px solid rgba(184, 151, 106, 0.2);
+        }
+
+        .contact-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .contact-meta-item .icon {
+            font-size: 1.25rem;
+        }
+
+        .contact-meta-label {
+            font-size: 0.85rem;
+            color: var(--gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-meta-value {
+            font-size: 0.95rem;
+            color: var(--ice);
+        }
+
         .company-logo {
             margin-top: 4rem;
             padding-top: 3rem;
@@ -1420,6 +1455,11 @@
             .contact-info {
                 flex-direction: column;
                 gap: 1rem;
+            }
+
+            .contact-meta {
+                flex-direction: column;
+                gap: 1.5rem;
             }
 
             .procurement-badges {
@@ -1993,6 +2033,23 @@
                 <div class="contact-item">
                     <span class="icon">📞</span>
                     <a href="tel:+46700377459">070-037 74 59</a>
+                </div>
+            </div>
+
+            <div class="contact-meta">
+                <div class="contact-meta-item">
+                    <span class="icon">⏱️</span>
+                    <div>
+                        <div class="contact-meta-label" data-lang-sv="Svarstid" data-lang-en="Response time">Svarstid</div>
+                        <div class="contact-meta-value" data-lang-sv="Inom 24h vardagar" data-lang-en="Within 24h weekdays">Inom 24h vardagar</div>
+                    </div>
+                </div>
+                <div class="contact-meta-item">
+                    <span class="icon">💬</span>
+                    <div>
+                        <div class="contact-meta-label" data-lang-sv="Kanaler" data-lang-en="Channels">Kanaler</div>
+                        <div class="contact-meta-value" data-lang-sv="E-post / Telefon" data-lang-en="Email / Phone">E-post / Telefon</div>
+                    </div>
                 </div>
             </div>
 
