@@ -1035,6 +1035,77 @@
             font-weight: 500;
         }
 
+        /* Documentation */
+        .docs-section {
+            background: var(--deep-navy);
+        }
+
+        .docs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .docs-column {
+            background: var(--gradient-card);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 2.5rem;
+        }
+
+        .docs-column h3 {
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .docs-column p {
+            color: var(--silver);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .docs-links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .doc-btn {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--ice);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .doc-btn:hover {
+            background: rgba(184, 151, 106, 0.1);
+            border-color: rgba(184, 151, 106, 0.4);
+            transform: translateX(5px);
+        }
+
+        .doc-btn .flag {
+            font-size: 1.5rem;
+            min-width: 24px;
+        }
+
+        .doc-btn .icon {
+            margin-left: auto;
+            font-size: 1.2rem;
+        }
+
         /* Contact */
         .contact-section {
             background: var(--gradient-hero);
@@ -1146,7 +1217,8 @@
             .virus-features,
             .logs-comparison,
             .install-cards,
-            .ownership-grid {
+            .ownership-grid,
+            .docs-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -1192,6 +1264,7 @@
             <li><a href="#trust-score" data-lang-sv="Trust Score" data-lang-en="Trust Score">Trust Score</a></li>
             <li><a href="#security" data-lang-sv="Säkerhet" data-lang-en="Security">Säkerhet</a></li>
             <li><a href="#installation" data-lang-sv="Installation" data-lang-en="Installation">Installation</a></li>
+            <li><a href="#documentation" data-lang-sv="Dokument" data-lang-en="Documents">Dokument</a></li>
             <li><a href="#contact" data-lang-sv="Kontakt" data-lang-en="Contact">Kontakt</a></li>
         </ul>
         <a href="#contact" class="nav-cta" data-lang-sv="Boka demo" data-lang-en="Book demo">Boka demo</a>
@@ -1605,6 +1678,67 @@
             <div class="summary-row">
                 <div class="cell challenge" data-lang-sv="Bristande spårbarhet vid incidenter" data-lang-en="Lack of traceability during incidents">Bristande spårbarhet vid incidenter</div>
                 <div class="cell solution" data-lang-sv="ERS som revisionsstöd med beviskedja" data-lang-en="ERS as audit support with evidence chain">ERS som revisionsstöd med beviskedja</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation -->
+    <section id="documentation" class="docs-section">
+        <div class="section-header animate-on-scroll">
+            <span class="section-label" data-lang-sv="Dokumentation" data-lang-en="Documentation">Dokumentation</span>
+            <h2 class="section-title" data-lang-sv="Ladda ner dokument" data-lang-en="Download documents">Ladda ner dokument</h2>
+            <p class="section-description" data-lang-sv="Detaljerad information om ERS finns tillgänglig för nedladdning." data-lang-en="Detailed information about ERS is available for download.">
+                Detaljerad information om ERS finns tillgänglig för nedladdning.
+            </p>
+        </div>
+
+        <div class="docs-grid">
+            <div class="docs-column animate-on-scroll">
+                <h3>📄 <span data-lang-sv="Kort översikt" data-lang-en="Quick overview">Kort översikt</span></h3>
+                <p data-lang-sv="Kompakt en-sidors sammanfattning av ERS nyckelfunktioner och fördelar." data-lang-en="Compact one-page summary of ERS key features and benefits.">
+                    Kompakt en-sidors sammanfattning av ERS nyckelfunktioner och fördelar.
+                </p>
+                <div class="docs-links">
+                    <a href="docs/ERS-OnePager-SV.pdf" class="doc-btn" download>
+                        <span class="flag">🇸🇪</span>
+                        <span data-lang-sv="Svenska" data-lang-en="Swedish">Svenska</span>
+                        <span class="icon">↓</span>
+                    </a>
+                    <a href="docs/ERS-OnePager-EN.pdf" class="doc-btn" download>
+                        <span class="flag">🇬🇧</span>
+                        <span data-lang-sv="Engelska" data-lang-en="English">Engelska</span>
+                        <span class="icon">↓</span>
+                    </a>
+                    <a href="docs/ERS-OnePager-DE.pdf" class="doc-btn" download>
+                        <span class="flag">🇩🇪</span>
+                        <span data-lang-sv="Tyska" data-lang-en="German">Tyska</span>
+                        <span class="icon">↓</span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="docs-column animate-on-scroll">
+                <h3>📋 <span data-lang-sv="Fullständig information" data-lang-en="Complete information">Fullständig information</span></h3>
+                <p data-lang-sv="Omfattande informationsblad med tekniska detaljer och implementeringsguide." data-lang-en="Comprehensive information sheet with technical details and implementation guide.">
+                    Omfattande informationsblad med tekniska detaljer och implementeringsguide.
+                </p>
+                <div class="docs-links">
+                    <a href="docs/ERS-Informationsblad-SV.pdf" class="doc-btn" download>
+                        <span class="flag">🇸🇪</span>
+                        <span data-lang-sv="Svenska" data-lang-en="Swedish">Svenska</span>
+                        <span class="icon">↓</span>
+                    </a>
+                    <a href="docs/ERS-Informationsblad-EN.pdf" class="doc-btn" download>
+                        <span class="flag">🇬🇧</span>
+                        <span data-lang-sv="Engelska" data-lang-en="English">Engelska</span>
+                        <span class="icon">↓</span>
+                    </a>
+                    <a href="docs/ERS-Informationsblad-DE.pdf" class="doc-btn" download>
+                        <span class="flag">🇩🇪</span>
+                        <span data-lang-sv="Tyska" data-lang-en="German">Tyska</span>
+                        <span class="icon">↓</span>
+                    </a>
+                </div>
             </div>
         </div>
     </section>

@@ -30,6 +30,20 @@ Webbplatsen har inbyggt språkstöd för:
 
 Språkväxling sker via knappar i navigationsfältet, och användarens val sparas lokalt i webbläsaren.
 
+## Nedladdningsbara dokument
+
+Projektet innehåller PDF-filer tillgängliga för nedladdning direkt från webbplatsen:
+
+### Kort översikt (OnePagers)
+- 🇸🇪 [`docs/ERS-OnePager-SV.pdf`](docs/ERS-OnePager-SV.pdf) - Svenska
+- 🇬🇧 [`docs/ERS-OnePager-EN.pdf`](docs/ERS-OnePager-EN.pdf) - Engelska
+- 🇩🇪 [`docs/ERS-OnePager-DE.pdf`](docs/ERS-OnePager-DE.pdf) - Tyska
+
+### Fullständig information (Informationsblad)
+- 🇸🇪 [`docs/ERS-Informationsblad-SV.pdf`](docs/ERS-Informationsblad-SV.pdf) - Svenska
+- 🇬🇧 [`docs/ERS-Informationsblad-EN.pdf`](docs/ERS-Informationsblad-EN.pdf) - Engelska
+- 🇩🇪 [`docs/ERS-Informationsblad-DE.pdf`](docs/ERS-Informationsblad-DE.pdf) - Tyska
+
 ## Teknisk information
 
 - **Typ**: Single-page application (SPA)
